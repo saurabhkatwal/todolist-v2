@@ -1,9 +1,7 @@
-const express = require('express');
+const express=require('express');
 const app = express();
 app.set('view engine', 'ejs');
-app.use(express.urlencoded({
-    extended: true
-}));
+app.use(express.urlencoded({extended:true}));
 app.get('/', function (req, res) {
     var jday = new Date();
     var currDay = jday.getDay();
@@ -15,14 +13,14 @@ app.get('/', function (req, res) {
         day: 'numeric'
     };
     var today = new Date();
-    day = today.toLocaleDateString(undefined, options);
+    day = today.toLocaleDateString('en-US', options);
     res.render('list', {
         kindOfDay: day
     });
 });
 app.post('/', function (req, res) {
     var tasks = req.body.tname;
-    console.log('task is ' + tname);
+    console.log('task is ' + tasks);
 });
 app.listen(3000, function () {
     console.log('server is running at port 3000');
